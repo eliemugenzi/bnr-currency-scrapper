@@ -48,8 +48,6 @@ def get_needed_currency():
 
     data = jsonify(data)
 
-    print(type(data))
-
     return data
 
 @app.route('/')
