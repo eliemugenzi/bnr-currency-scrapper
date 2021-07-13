@@ -32,14 +32,10 @@ def get_needed_currency():
     average_value_result = str(result[4])
     selling_value_result = str(result[5])
 
-    buying_value = buying_value_result.replace('<td>', '')
-    buying_value = buying_value.replace('</td>', '')
-    current_date = date_result.replace('<td>', '')
-    current_date = current_date.replace('</td>', '')
-    average_value = average_value_result.replace('<td>', '')
-    average_value = average_value.replace('</td>', '')
-    selling_value = selling_value_result.replace('<td>', '')
-    selling_value = selling_value.replace('</td>', '')
+    buying_value = buying_value_result.replace('<td>', '').replace('</td>', '')
+    current_date = date_result.replace('<td>', '').replace('</td>', '')
+    average_value = average_value_result.replace('<td>', '').replace('</td>', '')
+    selling_value = selling_value_result.replace('<td>', '').replace('</td>', '')
 
     data = {
         "buying_value": float(buying_value.strip()),
