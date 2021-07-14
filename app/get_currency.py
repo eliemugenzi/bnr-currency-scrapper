@@ -13,20 +13,20 @@ URL = os.environ.get('BNR_CURRENCY_URL')
 context = ssl._create_unverified_context()
 page = urllib.request.urlopen(URL,  context=context);
 
-sauce = Soup(page)
-trs = sauce.body.findAll('tr')
+html_content = Soup(page)
+table_rows = html_content.body.findAll('tr')
 
 result = []
 
-for tr in trs:
-    found = re.findall('USD', str(tr))
-    if found:
+for table_row in table_rows:
+    found_row = re.findall('USD', str(table_row))
+    if found_row:
 
-        strings = [_string for _string in tr]
+        table_data_set = [table_row_item for table_row_item in table_row]
 
-        for str_ in strings:
-            if str_ != '\n':
-                result.append(str_)
+        for table_data in table_data_set:
+            if table_data != '\n':
+                result.append(table_data)
 
 def get_needed_currency():
     buying_value_result = str(result[3])
