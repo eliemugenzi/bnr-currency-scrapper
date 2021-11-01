@@ -13,7 +13,7 @@ URL = os.environ.get('BNR_CURRENCY_URL')
 context = ssl._create_unverified_context()
 page = urllib.request.urlopen(URL,  context=context);
 
-html_content = Soup(page)
+html_content = Soup(page, features='html.parser')
 table_rows = html_content.body.findAll('tr')
 
 result = []
@@ -34,10 +34,12 @@ def get_needed_currency():
     average_value_result = str(result[4])
     selling_value_result = str(result[5])
 
-    buying_value = buying_value_result.replace('<td>', '').replace('</td>', '')
-    current_date = date_result.replace('<td>', '').replace('</td>', '')
-    average_value = average_value_result.replace('<td>', '').replace('</td>', '')
-    selling_value = selling_value_result.replace('<td>', '').replace('</td>', '')
+    buying_value = buying_value_result.replace('<td>', '').replace('</td>', '').replace(',', '')
+    current_date = date_result.replace('<td>', '').replace('</td>', '').replace(',', '')
+    average_value = average_value_result.replace('<td>', '').replace('</td>', '').replace(',', '')
+    selling_value = selling_value_result.replace('<td>', '').replace('</td>', '').replace(',', '')
+
+    print('WTF', average_value)
 
     data = {
         "buying_value": float(buying_value.strip()),
