@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+import json
 from .get_currency import get_needed_currency
 
 
@@ -16,6 +17,7 @@ def index():
 def pindo_callback():
     body = request.data
 
-    response = jsonify(body)
+    cc = json.loads(body)
+    print('CC', cc)
 
-    return response
+    return cc
