@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from .get_currency import get_needed_currency
 
 
@@ -12,3 +12,10 @@ def index():
     return response
 
 
+@app.route('/pindo', methods=['POST'])
+def pindo_callback():
+    body = request.data
+
+    response = jsonify(body)
+
+    return response
